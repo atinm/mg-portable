@@ -1,3 +1,8 @@
+PORTNAME	?= mg
+PREFIX		?= /usr
+MANPREFIX	?= ${PREFIX}/share/man
+DOCSDIR		?= ${PREFIX}/share/doc/${PORTNAME}
+
 CC	 =	gcc
 
 LDFLAGS	+=	-lncurses
@@ -42,17 +47,17 @@ ${PROG}: ${OBJS}
 	${CC} ${CFLAGS} ${OBJS} ${LDFLAGS} -o $@;
 
 install:
-	install -o root -g bin -m 555 -s -S -d mg ${DESTDIR}/usr/bin/mg;
-	install -o root -g bin -m 444 -S -d mg.1 ${DESTDIR}/usr/share/man/man1/mg.1;
-	if [ ! -d ${DESTDIR}/usr/share/doc/mg/ ]; then \
-		mkdir -p ${DESTDIR}/usr/share/doc/mg/; \
+	install -o root -g bin -m 555 -S mg ${PREFIX}/bin/mg;
+	install -o root -g bin -m 444 -S mg.1 ${MANPREFIX}/man1/mg.1;
+	if [ ! -d ${DOCSDIR} ]; then \
+		mkdir -p ${DOCSDIR}; \
 	fi;
-	install -o root -g bin -m 444 -S -d tutorial ${DESTDIR}/usr/share/doc/mg/tutorial;
+	install -o root -g bin -m 444 -S tutorial ${DOCSDIR}/tutorial;
 
 uninstall:
-	rm -f ${DESTDIR}/usr/bin/mg;
-	rm -f ${DESTDIR}/usr/share/man/man1/mg.1;
-	rm -rf ${DESTDIR}/usr/share/doc/mg;
+	rm -f ${PREFIX}/bin/mg;
+	rm -f ${MANPREFIX}/man1/mg.1;
+	rm -rf ${DOCSDIR};
 
 clean:
 	rm -f mg ${OBJS};
