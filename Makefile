@@ -1,3 +1,5 @@
+PREFIX = /usr
+
 CC	 =	gcc
 
 LDFLAGS	+=	-lncurses
@@ -42,17 +44,17 @@ ${PROG}: ${OBJS}
 	${CC} ${CFLAGS} ${OBJS} ${LDFLAGS} -o $@;
 
 install:
-	install -o root -g bin -m 555 -s -S -d mg ${DESTDIR}/usr/bin/mg;
-	install -o root -g bin -m 444 -S -d mg.1 ${DESTDIR}/usr/share/man/man1/mg.1;
-	if [ ! -d ${DESTDIR}/usr/share/doc/mg/ ]; then \
-		mkdir -p ${DESTDIR}/usr/share/doc/mg/; \
+	install -o root -g bin -m 555 -s -S -d mg ${PREFIX}/bin/mg;
+	install -o root -g bin -m 444 -S -d mg.1 ${PREFIX}/share/man/man1/mg.1;
+	if [ ! -d ${PREFIX}/share/doc/mg/ ]; then \
+		mkdir -p ${PREFIX}/share/doc/mg/; \
 	fi;
-	install -o root -g bin -m 444 -S -d tutorial ${DESTDIR}/usr/share/doc/mg/tutorial;
+	install -o root -g bin -m 444 -S -d tutorial ${PREFIX}/share/doc/mg/tutorial;
 
 uninstall:
-	rm -f ${DESTDIR}/usr/bin/mg;
-	rm -f ${DESTDIR}/usr/share/man/man1/mg.1;
-	rm -rf ${DESTDIR}/usr/share/doc/mg;
+	rm -f ${PREFIX}/bin/mg;
+	rm -f ${PREFIX}/share/man/man1/mg.1;
+	rm -rf ${PREFIX}/share/doc/mg;
 
 clean:
 	rm -f mg ${OBJS};
