@@ -47,12 +47,12 @@ ${PROG}: ${OBJS}
 	${CC} ${CFLAGS} ${OBJS} ${LDFLAGS} -o $@;
 
 install:
-	install -o root -g bin -m 555 -s -S -d mg ${PREFIX}/bin/mg;
-	install -o root -g bin -m 444 -S -d mg.1 ${MANPREFIX}/man1/mg.1;
+	install -o root -g bin -m 555 -S mg ${PREFIX}/bin/mg;
+	install -o root -g bin -m 444 -S mg.1 ${MANPREFIX}/man1/mg.1;
 	if [ ! -d ${DOCSDIR} ]; then \
 		mkdir -p ${DOCSDIR}; \
 	fi;
-	install -o root -g bin -m 444 -S -d tutorial ${DOCSDIR}/tutorial;
+	install -o root -g bin -m 444 -S tutorial ${DOCSDIR}/tutorial;
 
 uninstall:
 	rm -f ${PREFIX}/bin/mg;
