@@ -1,7 +1,7 @@
-PORTNAME	= mg
-PREFIX		= /usr
-MANPREFIX	= ${PREFIX}/share/man
-DOCSDIR		= ${PREFIX}/share/doc/${PORTNAME}
+PORTNAME	?= mg
+PREFIX		?= /usr
+MANPREFIX	?= ${PREFIX}/share/man
+DOCSDIR		?= ${PREFIX}/share/doc/${PORTNAME}
 
 CC	 =	gcc
 
