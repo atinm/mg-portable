@@ -1,4 +1,7 @@
-PREFIX = /usr
+PORTNAME	= mg
+PREFIX		= /usr
+MANPREFIX	= ${PREFIX}/share/man
+DOCSDIR		= ${PREFIX}/share/doc/${PORTNAME}
 
 CC	 =	gcc
 
@@ -45,16 +48,16 @@ ${PROG}: ${OBJS}
 
 install:
 	install -o root -g bin -m 555 -s -S -d mg ${PREFIX}/bin/mg;
-	install -o root -g bin -m 444 -S -d mg.1 ${PREFIX}/share/man/man1/mg.1;
-	if [ ! -d ${PREFIX}/share/doc/mg/ ]; then \
-		mkdir -p ${PREFIX}/share/doc/mg/; \
+	install -o root -g bin -m 444 -S -d mg.1 ${MANPREFIX}/man1/mg.1;
+	if [ ! -d ${DOCSDIR} ]; then \
+		mkdir -p ${DOCSDIR}; \
 	fi;
-	install -o root -g bin -m 444 -S -d tutorial ${PREFIX}/share/doc/mg/tutorial;
+	install -o root -g bin -m 444 -S -d tutorial ${DOCSDIR}/tutorial;
 
 uninstall:
 	rm -f ${PREFIX}/bin/mg;
-	rm -f ${PREFIX}/share/man/man1/mg.1;
-	rm -rf ${PREFIX}/share/doc/mg;
+	rm -f ${MANPREFIX}/man1/mg.1;
+	rm -rf ${DOCSDIR};
 
 clean:
 	rm -f mg ${OBJS};
